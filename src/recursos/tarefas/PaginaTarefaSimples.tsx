@@ -27,9 +27,13 @@ export const PaginaTarefaSimples = () => {
         <p className="tarefa-content">
           Criada em: {tarefa.dataCriacao.toLocaleString()}
         </p>
-        {tarefa.concluida && (
-          <p>Finalizada em: {tarefa.dataFinalizacao?.toLocaleString()}</p>
-        )}
+        <span>
+          {tarefa.concluida ? (
+            <p>✅ Finalizada em: {tarefa.dataFinalizacao?.toLocaleString()}</p>
+          ) : (
+            <p>⌛</p>
+          )}
+        </span>
         <Link to={`/tarefas/${tarefa.id}/editar`} className="button">
           Editar Tarefa
         </Link>

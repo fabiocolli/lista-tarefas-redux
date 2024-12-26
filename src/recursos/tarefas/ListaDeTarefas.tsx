@@ -13,14 +13,17 @@ export const ListaDeTarefas = () => {
       <h3>
         <Link to={`/tarefas/${tarefa.id}`}>{tarefa.titulo}</Link>
       </h3>
-      {/* <h3>{tarefa.titulo}</h3> */}
       <p>{tarefa.descricao}</p>
       <p className="tarefa-content">
         Criada em: {tarefa.dataCriacao.toLocaleString()}
       </p>
-      {tarefa.concluida && (
-        <p>Finalizada em: {tarefa.dataFinalizacao?.toLocaleString()}</p>
-      )}
+      <span>
+        {tarefa.concluida ? (
+          <p>✅ Finalizada em: {tarefa.dataFinalizacao?.toLocaleString()}</p>
+        ) : (
+          <p>⌛</p>
+        )}
+      </span>
     </article>
   ));
 

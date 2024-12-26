@@ -79,6 +79,7 @@ const tarefasSlice = createSlice({
         tarefa.descricao = descricao;
         tarefa.dataCriacao = dataCriacao;
         tarefa.concluida = concluida;
+        tarefa.dataFinalizacao = concluida ? new Date() : undefined;
       }
     },
   },
