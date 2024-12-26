@@ -3,9 +3,9 @@ import { ListaDeTarefas } from "./ListaDeTarefas";
 
 export function PaginaPrincipalTarefa() {
   return (
-    <div>
+    <>
       <AdicionarNovaTarefa />
       <ListaDeTarefas />
-    </div>
+    </>
   );
 }

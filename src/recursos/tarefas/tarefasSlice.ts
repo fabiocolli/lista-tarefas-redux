@@ -84,8 +84,8 @@ const tarefasSlice = createSlice({
   },
   selectors: {
     selecionarTodasTarefas: (estadoTarefas) => estadoTarefas,
-    selecionarTarefaPeloId: (estadaTarefa, idTarefa) =>
-      estadaTarefa.find((tarefa) => tarefa.id === idTarefa),
+    selecionarTarefaPeloId: (estadoTarefas, idTarefa) =>
+      estadoTarefas.find((tarefa) => tarefa.id === idTarefa),
   },
 });
 

@@ -14,19 +14,19 @@ interface ElementosEditarTarefa extends HTMLFormElement {
 }
 
 export const EditarTarefa = () => {
-  const { idTarefa } = useParams();
+  const { tarefaId } = useParams();
 
   const tarefa = useAppSelector((estado) =>
-    selecionarTarefaPeloId(estado, idTarefa!)
+    selecionarTarefaPeloId(estado, tarefaId!)
   );
 
   const despacho = useAppDispatch();
-  const navegador = useNavigate();
+  const navegaPara = useNavigate();
 
   if (!tarefa) {
     return (
       <section>
-        <h2>Post not found!</h2>
+        <h2>Tarefa não encontrada!</h2>
       </section>
     );
   }
@@ -34,23 +34,27 @@ export const EditarTarefa = () => {
   const onSalvarTarefaNoClick = (
     event: React.FormEvent<ElementosEditarTarefa>
   ) => {
+
+    event.preventDefault();
+    
     const { elements } = event.currentTarget;
     const titulo = elements.titulo.value;
     const descricao = elements.descricao.value;
     const dataCriacao = elements.dataCriacao.value;
     const concluida = elements.concluida.checked;
 
-    if (titulo && descricao && dataCriacao && concluida) {
+    if (titulo && descricao && dataCriacao) {
       despacho(
         atualizaTarefa({
-          id: idTarefa!,
+          id: tarefaId!,
           titulo,
           descricao,
           dataCriacao: new Date(dataCriacao),
           concluida,
         })
       );
-      navegador("/");
+
+      navegaPara(`/tarefas/${tarefaId}`);
     }
   };
 
