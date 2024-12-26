@@ -69,12 +69,27 @@ const tarefasSlice = createSlice({
         },
       }),
     },
+    atualizaTarefa(state, action: PayloadAction<Tarefa>) {
+      const { id, titulo, descricao, concluida, dataCriacao } = action.payload;
+
+      const tarefa = state.find((tarefa) => tarefa.id === id);
+
+      if (tarefa) {
+        tarefa.titulo = titulo;
+        tarefa.descricao = descricao;
+        tarefa.dataCriacao = dataCriacao;
+        tarefa.concluida = concluida;
+      }
+    },
   },
   selectors: {
-    selecionarTodasTarefas: (stadoTarefas: Tarefa[]) => stadoTarefas,
+    selecionarTodasTarefas: (estadoTarefas) => estadoTarefas,
+    selecionarTarefaPeloId: (estadaTarefa, idTarefa) =>
+      estadaTarefa.find((tarefa) => tarefa.id === idTarefa),
   },
 });
 
 export default tarefasSlice.reducer;
-export const { selecionarTodasTarefas } = tarefasSlice.selectors;
-export const { adicionarTarefa } = tarefasSlice.actions;
+export const { selecionarTodasTarefas, selecionarTarefaPeloId } =
+  tarefasSlice.selectors;
+export const { adicionarTarefa, atualizaTarefa } = tarefasSlice.actions;

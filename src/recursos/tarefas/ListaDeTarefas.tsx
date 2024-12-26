@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useAppSelector } from "../../app/hooks";
 import { selecionarTodasTarefas } from "./tarefasSlice";
 
@@ -9,7 +10,10 @@ export const ListaDeTarefas = () => {
 
   const listaDeTarefas = tarefasOrdenadas.map((tarefa) => (
     <article key={tarefa.id} className="tarefa-excerpt">
-      <h3>{tarefa.titulo}</h3>
+      <h3>
+        <Link to={`/tarefas/${tarefa.id}`}>{tarefa.titulo}</Link>
+      </h3>
+      {/* <h3>{tarefa.titulo}</h3> */}
       <p>{tarefa.descricao}</p>
       <p className="tarefa-content">
         Criada em: {tarefa.dataCriacao.toLocaleString()}
