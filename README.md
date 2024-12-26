@@ -103,3 +103,58 @@ export const { adicionarTarefa, removerTarefa, editarTarefa } = tarefasSlice.act
 
 export default tarefasSlice.reducer
 ```
+
+## Descrição da Lista de Tarefas
+
+A aplicação de lista de tarefas permite aos usuários criar, visualizar, editar e excluir tarefas. A estrutura principal do projeto está na pasta `src/recursos`, que contém os seguintes arquivos e pastas:
+
+- `tarefas/tarefaslice.js`: Define o slice do Redux para gerenciar o estado das tarefas.
+- `app/store.js`: Configura a store do Redux com o slice de tarefas.
+
+### Código atualizado baseado em `app/store.js` e `src/recursos/tarefas/tarefaslice.js`
+
+#### `app/store.js`
+
+```js
+import { configureStore } from '@reduxjs/toolkit'
+import tarefasReducer from '../recursos/tarefas/tarefaslice'
+
+export const store = configureStore({
+  reducer: {
+    tarefas: tarefasReducer,
+  },
+})
+```
+
+#### `src/recursos/tarefas/tarefaslice.js`
+
+```js
+import { createSlice } from '@reduxjs/toolkit'
+
+const initialState = {
+  lista: [],
+}
+
+const tarefasSlice = createSlice({
+  name: 'tarefas',
+  initialState,
+  reducers: {
+    adicionarTarefa: (state, action) => {
+      state.lista.push(action.payload)
+    },
+    removerTarefa: (state, action) => {
+      state.lista = state.lista.filter(tarefa => tarefa.id !== action.payload)
+    },
+    editarTarefa: (state, action) => {
+      const index = state.lista.findIndex(tarefa => tarefa.id === action.payload.id)
+      if (index !== -1) {
+        state.lista[index] = action.payload
+      }
+    },
+  },
+})
+
+export const { adicionarTarefa, removerTarefa, editarTarefa } = tarefasSlice.actions
+
+export default tarefasSlice.reducer
+```
