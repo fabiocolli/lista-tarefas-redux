@@ -34,9 +34,8 @@ export const EditarTarefa = () => {
   const onSalvarTarefaNoClick = (
     event: React.FormEvent<ElementosEditarTarefa>
   ) => {
-
     event.preventDefault();
-    
+
     const { elements } = event.currentTarget;
     const titulo = elements.titulo.value;
     const descricao = elements.descricao.value;
@@ -84,7 +83,9 @@ export const EditarTarefa = () => {
           id="concluida"
           defaultChecked={tarefa.concluida}
         />
-        <button>Salvar</button>
+        <div>
+          <button>Salvar</button>
+        </div>
       </form>
     </section>
   );
