@@ -3,8 +3,11 @@ import { selecionarTodasTarefas } from "./tarefasSlice";
 
 export const ListaDeTarefas = () => {
   const tarefas = useAppSelector(selecionarTodasTarefas);
+  const tarefasOrdenadas = tarefas
+    .slice()
+    .sort((a, b) => b.dataCriacao.getTime() - a.dataCriacao.getTime());
 
-  const listaDeTarefas = tarefas.map((tarefa) => (
+  const listaDeTarefas = tarefasOrdenadas.map((tarefa) => (
     <article key={tarefa.id} className="tarefa-excerpt">
       <h3>{tarefa.titulo}</h3>
       <p>{tarefa.descricao}</p>
