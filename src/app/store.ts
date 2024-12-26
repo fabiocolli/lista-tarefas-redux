@@ -1,7 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import tarefasReducer from "../recursos/tarefas/tarefasSlice";
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    tarefas: tarefasReducer,
+  },
 });
 
 export type AppStore = typeof store;

@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
 
 export interface Tarefa {
   id: string;
@@ -54,7 +54,22 @@ const initialState: Tarefa[] = [
 const tarefasSlice = createSlice({
   name: "tarefas",
   initialState,
-  reducers: {},
+  reducers: {
+    adicionarTarefa: {
+      reducer: (state, action: PayloadAction<Tarefa>) => {
+        state.push(action.payload);
+      },
+      prepare: (titulo: string, descricao: string) => ({
+        payload: {
+          id: nanoid(),
+          titulo,
+          descricao,
+          dataCriacao: new Date(),
+          concluida: false,
+        },
+      }),
+    },
+  },
   selectors: {
     selecionarTodasTarefas: (stadoTarefas: Tarefa[]) => stadoTarefas,
   },
@@ -62,3 +77,4 @@ const tarefasSlice = createSlice({
 
 export default tarefasSlice.reducer;
 export const { selecionarTodasTarefas } = tarefasSlice.selectors;
+export const { adicionarTarefa } = tarefasSlice.actions;

@@ -18,7 +18,7 @@ export const ListaDeTarefas = () => {
   ));
 
   return (
-    <section className="posts-list">
+    <section className="tarefas-list">
       <h2>Tarefas</h2>
       {listaDeTarefas}
     </section>
