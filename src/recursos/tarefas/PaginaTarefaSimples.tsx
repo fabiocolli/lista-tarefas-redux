@@ -34,6 +34,10 @@ export const PaginaTarefaSimples = () => {
             <p>⌛</p>
           )}
         </span>
+        <Link to={`/`} className="button">
+          Voltar
+        </Link>
+        <span style={{ margin: "0 3px" }}></span>
         <Link to={`/tarefas/${tarefa.id}/editar`} className="button">
           Editar Tarefa
         </Link>
