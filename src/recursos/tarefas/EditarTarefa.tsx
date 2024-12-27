@@ -21,7 +21,7 @@ export const EditarTarefa = () => {
     selecionarTarefaPeloId(estado, tarefaId!)
   );
 
-  const despacho = useAppDispatch();
+  const despachar = useAppDispatch();
   const navegaPara = useNavigate();
 
   if (!tarefa) {
@@ -44,7 +44,7 @@ export const EditarTarefa = () => {
     const concluida = elements.concluida.checked;
 
     if (titulo && descricao && dataCriacao) {
-      despacho(
+      despachar(
         atualizaTarefa({
           id: tarefaId!,
           titulo,
